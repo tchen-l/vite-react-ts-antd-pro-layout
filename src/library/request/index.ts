@@ -123,7 +123,7 @@ service.interceptors.response.use(
 
     if (code === 401) {
       deleteAuthAndToken();
-      useAppStore.getState().setToken('');
+      useAppStore.getState().reset();
       window.location.href = '/login';
       return res;
     }
@@ -150,7 +150,7 @@ service.interceptors.response.use(
 
     if (response?.status === 401) {
       deleteAuthAndToken();
-      useAppStore.getState().setToken('');
+      useAppStore.getState().reset();
       window.location.href = '/login';
 
       return Promise.resolve({

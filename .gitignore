@@ -12,6 +12,5 @@ build-ssr
 *.local
 
 # Editor directories and files
-!.vscode/extensions.json
 .DS_Store
 
