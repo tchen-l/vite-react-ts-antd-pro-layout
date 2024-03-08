@@ -33,12 +33,12 @@ const routes: RouteObject[] = [
         path: '/login',
         caseSensitive: true,
         lazy: lazy('../pages/login')
-      },
-      {
-        path: '*',
-        lazy: lazy('../components/no-match')
       }
     ]
+  },
+  {
+    path: '*',
+    lazy: lazy('../pages/no-match')
   }
 ];
 
