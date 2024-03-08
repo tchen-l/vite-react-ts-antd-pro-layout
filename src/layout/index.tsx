@@ -1,6 +1,6 @@
-import { Spin } from 'antd';
+import { Button, Result, Spin } from 'antd';
 import { useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 import { isOpenPage } from '@/helpers/auth';
 import useAppStore from '@/store/app';
@@ -12,6 +12,10 @@ const isBlankLayout = (route?: { layout: string } | undefined) => route?.layout 
 
 function InitDataLayout() {
   const { loading, currentUser, init } = useAppStore();
+  const navigate = useNavigate();
+
+  /** do something yourself */
+  const canAccess = true;
 
   useEffect(() => {
     init();
@@ -19,6 +23,21 @@ function InitDataLayout() {
 
   if (loading || !currentUser) {
     return <Spin spinning fullscreen tip="努力加载数据中..." />;
+  }
+
+  if (!canAccess) {
+    return (
+      <Result
+        status="403"
+        title="403"
+        subTitle="Sorry, you are not authorized to access this page."
+        extra={
+          <Button type="primary" onClick={() => navigate('/')}>
+            Back Home
+          </Button>
+        }
+      />
+    );
   }
 
   return isBlankLayout() ? <BlankLayout /> : <BasicLayout />;

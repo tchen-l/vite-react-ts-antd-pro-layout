@@ -36,7 +36,7 @@ const routes: RouteObject[] = [
       },
       {
         path: '*',
-        lazy: lazy('../pages/no-match')
+        lazy: lazy('../components/no-match')
       }
     ]
   }
